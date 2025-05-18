@@ -29,31 +29,27 @@ class ProcessFiles:
         logger.info(f"Initializing ProcessFiles with {len(self.files_dir)} files")
 
     def _check_existing_collection(self) -> bool:
-        """Check if collection already exists and offer to replace it."""
+        """Check if collection already exists and handle replacement automatically."""
         try:
             collection = APPCFG.chroma_client.get_collection(name=APPCFG.collection_name)
             count = collection.count()
             if count > 0:
                 logger.warning(f"Collection '{APPCFG.collection_name}' already exists with {count} documents")
                 
-                # Instead of blocking, ask user if they want to replace
-                replace_msg = f"""
-                📋 **Existing Data Found**: The system already contains {count} documents from a previous upload.
-                
-                **Options:**
-                1. 🔄 **Replace existing data**: Your new files will replace the current collection
-                2. ❌ **Cancel upload**: Keep existing data and cancel this upload
-                
-                **Note**: If you proceed, all existing documents will be deleted and replaced with your new files.
-                """
-                
-                self.chatbot.append((" ", replace_msg))
-                
-                # For now, we'll automatically replace. In a full implementation, 
-                # you might want to add user confirmation
-                logger.info("Deleting existing collection to replace with new data")
+                # Automatically replace existing collection without user prompt
+                logger.info("🔄 Replacing existing collection with new data")
                 APPCFG.chroma_client.delete_collection(name=APPCFG.collection_name)
-                return False  # Proceed with upload
+                
+                # Add a message to inform the user
+                self.chatbot.append((" ", f"""🔄 **Replacing Existing Data**
+                
+Found {count} existing documents in the system. They will be replaced with your new files.
+                
+**Previous Collection**: {count} documents
+**Status**: Clearing for new upload...
+"""))
+                
+                return False  # Proceed with upload after deletion
         except Exception:
             logger.info("No existing collection found, will create new one")
         return False
