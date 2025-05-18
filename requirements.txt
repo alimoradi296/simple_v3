@@ -9,5 +9,7 @@ PyYAML
 SQLAlchemy
 openai
 langchain-openai
-
+chromadb
+openpyxl
+pydantic
 
