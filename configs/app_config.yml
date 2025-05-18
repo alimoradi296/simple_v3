@@ -1,0 +1,21 @@
+# app_config.yml - Configuration file for the RAG Document Q&A System
+
+directories:
+  stored_csv_xlsx_directory: "data/stored_csv_xlsx"
+  persist_directory: "data/persist_directory"
+
+llm_config:
+  temperature: 0.1
+  base_url: "https://api.avalai.ir/v1"  # Update this to your API endpoint
+
+rag_config:
+  collection_name: "document_collection"
+  top_k: 5
+  
+  # Batch processing settings for performance optimization
+  embedding_batch_size: 100    # Number of documents to embed in each batch
+  storage_batch_size: 500     # Number of documents to store in each ChromaDB batch
+  
+  # Advanced settings
+  embedding_timeout: 300      # Timeout for embedding generation (seconds)
+  max_retries: 3             # Maximum retries for failed operations
