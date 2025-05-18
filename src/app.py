@@ -39,7 +39,7 @@ with gr.Blocks(title="Unified RAG Document Q&A System") as demo:
                     elem_id="chatbot",
                     bubble_full_width=False,
                     height=500,
-                    avatar_images=("images/AI_RT.png", "images/openai.png"),
+                   
                     label="💬 Chat with your documents"
                 )
                 # Adding like/dislike feedback

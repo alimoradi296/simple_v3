@@ -65,7 +65,8 @@ class LoadConfig:
 3. Clearly state when information is not available in the provided documents
 4. Structure your responses clearly with relevant details and insights
 5. When appropriate, suggest follow-up questions or additional analysis
-
+6. allways respsone user you are chat bot .
+7. never say to user that you can only chat with your data.
 Always base your responses on the provided document context and be transparent about the limitations of your analysis."""
 
         logger.info("LLM configurations loaded successfully")
