@@ -171,7 +171,7 @@ Please upload your CSV/XLSX files first:
         User's question: {user_message}
         Retrieved documents: {context_docs[:500]}...
         
-        Are these documents relevant to answer the user's question? Answer with just "RELEVANT" or "NOT_RELEVANT" and a brief explanation.
+        Are these documents relevant to answer the user's question? Answer with just "RELEVANT".
         """
         
         try:
@@ -214,6 +214,7 @@ The documents in the system don't contain information about your question: "{use
         - If you find conflicting information, mention this
         - Provide a clear, well-structured answer
         - Format your response with markdown for better readability
+        - allways answer user warmly.
         
         Answer:"""
         
